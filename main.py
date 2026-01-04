@@ -1,5 +1,7 @@
 from tkinter import *
 
+from calculationLog import log_calculation
+
 
 
 
@@ -28,21 +30,22 @@ def click(btn):
     
     if ((calculation_input.isnumeric() or calculation_input == "") and btn.isnumeric()):
         calculation_input += btn
-    elif (calculation_input.isnumeric() and btn in "+-*/="):
-        calculation_temp = str(eval(calculation_temp + calculation_input))
+    elif (not calculation_input.isnumeric() and btn in "+-*/="):
         calculation_input = btn
+    elif (calculation_input.isnumeric() and btn in "+-*/="):
+        calcualtion_result = str(eval(calculation_temp + calculation_input))
+        log_calculation(calculation_temp + calculation_input, float(calcualtion_result))
+        calculation_input = btn
+        calculation_temp = calcualtion_result
     elif (calculation_input in "+-*/=" and btn.isnumeric()):
         if(calculation_input != "="):
             calculation_temp += calculation_input
         calculation_input = btn
-    elif (btn == "="):
-        calcualtion_result = str(eval(calculation_temp + calculation_input))
     elif (btn == "C" and calculation_input != ""):
         calculation_input = calculation_input[:-1]
     
     label1.config(text=calculation_temp) # update label text
     label2.config(text=calculation_input) # update label text
-    label3.config(text=calcualtion_result) # update label text
 
 
 
