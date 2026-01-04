@@ -17,9 +17,9 @@ buttons = [
 count = 0
 
 def click(btn):
-    global count
-    count += 1
-    print(count)
+    # global count
+    # count += 1
+    # print(count)
 
     global calculation_temp
     global calculation_input
